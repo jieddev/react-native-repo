@@ -6,14 +6,14 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#302f2f",
+        tabBarActiveTintColor: "#f2eaea",
         headerStyle: {
           backgroundColor: "#25292e"
         }, 
         headerShadowVisible: false, 
         headerTintColor: "#fff",
         tabBarStyle: {
-          backgroundColor: '#25292e'
+          backgroundColor: '#2e2526'
         },
       }}
     >
@@ -23,7 +23,7 @@ export default function TabsLayout() {
       }}/>
       <Tabs.Screen name="about" options={{
         headerTitle: "About",
-        tabBarIcon: ({focused, color}) => <Ionicons name={focused ? "information-circle-sharp": "information-circle-outline"} size={30}/>
+        tabBarIcon: ({focused, color}) => <Ionicons name={focused ? "information-circle-sharp": "information-circle-outline"} color={color} size={30}/>
       }}/>
       <Tabs.Screen name="+not-found" options={{
         headerShown: false,
