@@ -1,25 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BlogList from './BlogList';
 
 const Home = () => {
-  // const [name, setName] = useState('mario')
-  // const [age, setAge] = useState(25)
-  const [blogs, setBlogs] = useState([
-    {title: "Happy Birthday", body: "Okay", author: "mario", id: 1},
-    {title: "Merry Christmas", body: "pasko", author: "luigi", id: 2},
-    {title: "New Year", body: "new lifestyle", author: "mario", id: 3},
-  ])
+  const [blogs, setBlogs] = useState(null)
+  const [isPending, setIsPending] = useState(true)
 
-
-  // const handleClick = (e) => {
-  //   // console.log("hello ninjas", e.type);
-  //   setName('luigi');
-  //   setAge(30)
-  // }
-
-  // const handleClickAgain = (name, e) => {
-  //   console.log("hello " + name, e);
-  // }
+  useEffect(() => {
+    setTimeout(() => {
+      fetch("http://localhost:8000/blogs")
+        .then((res) => {
+          return res.json()
+        })
+        .then((data) => {
+          console.log(data)
+          setBlogs(data)
+          setIsPending(false);
+        })
+    }, 2000)
+  }, [])
 
   const handleDelete = (id) => {
     const newBlogs = blogs.filter((blog) => blog.id !== id);
@@ -29,8 +27,14 @@ const Home = () => {
 
   return ( 
     <div className='home'>
-      < BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>
-      < BlogList blogs={blogs.filter((blog) => blog.author === "mario")} title="Mario's Blogs" handleDelete={handleDelete}/>
+      { isPending && <div>Loading...</div>}
+      { blogs && 
+        <>
+        <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />
+        <BlogList blogs={blogs.filter((blog) => blog.author === "mario")} title="Mario's Blogs" />
+        </>
+      }
+   
     </div>
     
    );
