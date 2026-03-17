@@ -21,9 +21,9 @@ const Home = () => {
     console.log("hello " + name, e);
   }
   
-  
+
   return ( 
-    < BlogList blogs={blogs}/>
+    < BlogList blogs={blogs} title="All Blogs"/>
  
    );
 }
