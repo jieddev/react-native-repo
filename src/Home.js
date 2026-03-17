@@ -5,9 +5,9 @@ const Home = () => {
   const [name, setName] = useState('mario')
   const [age, setAge] = useState(25)
   const [blogs, setBlogs] = useState([
-    {title: "Happy Birthday", body: "Okay", id: 1},
-    {title: "Merry Christmas", body: "pasko", id: 2},
-    {title: "New Year", body: "new lifestyle", id: 3},
+    {title: "Happy Birthday", body: "Okay", author: "mario", id: 1},
+    {title: "Merry Christmas", body: "pasko", author: "luigi", id: 2},
+    {title: "New Year", body: "new lifestyle", author: "mario", id: 3},
   ])
 
 
@@ -23,8 +23,11 @@ const Home = () => {
   
 
   return ( 
-    < BlogList blogs={blogs} title="All Blogs"/>
- 
+    <div className='home'>
+      < BlogList blogs={blogs} title="All Blogs"/>
+      < BlogList blogs={blogs.filter((blog) => blog.author == "mario")} title="Mario's Blogs"/>
+    </div>
+    
    );
 }
  
