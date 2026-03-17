@@ -1,0 +1,18 @@
+const BlogList = (props) => {
+  const blogs = props.blogs
+
+  return (
+    <div className="blogs-list">
+      <div className="home">
+        {blogs.map((blog) => (
+          <div className="blog-preview" key={blog.id}>
+            <h2>{blog.title}</h2>
+            <p>{blog.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default BlogList;
