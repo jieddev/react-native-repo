@@ -1,22 +1,30 @@
 import Navbar from './Nav';
 import Home from './Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import Create from './Create';
+import BlogDetails from './BlogDetails';
 
 function App() {
-  // const title = "Welcome to the New Blog"
-  // const likes = 50
-
   return (
-    <div className="App">
-      <Navbar></Navbar>
-
-      <div className="content">
-        <Home/>        
-        {/* <h1> { title }  </h1> 
-        <p> Liked { likes } times</p> */}
+    <Router>
+      <div className="App">
+        <Navbar></Navbar>
+        <div className="content">
+          <Switch>
+            <Route exact path='/'>
+              <Home/>
+            </Route>
+            <Route path='/create'>
+              <Create/>
+            </Route>
+            <Route path='/blogs/:id'>
+              <BlogDetails/>
+            </Route>
+          </Switch>
+        </div>
 
       </div>
-
-    </div>
+    </Router>
   );
 }
 
